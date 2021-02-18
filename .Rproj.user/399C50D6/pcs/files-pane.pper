@@ -2,7 +2,11 @@
     "path" : "~/Code/GEOG0030",
     "sortOrder" : [
         {
-            "ascending" : true,
+            "ascending" : false,
+            "columnIndex" : 4
+        },
+        {
+            "ascending" : false,
             "columnIndex" : 2
         }
     ]

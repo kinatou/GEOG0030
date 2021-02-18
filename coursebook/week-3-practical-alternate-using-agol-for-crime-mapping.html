@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Week 3 Practical Alternate: Using AGOL for Crime Mapping | Geocomputation 2020-2021 Work Book</title>
+  <meta name="description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Week 3 Practical Alternate: Using AGOL for Crime Mapping | Geocomputation 2020-2021 Work Book" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jo-wilkin.github.io/GEOG0030/" />
+  
+  <meta property="og:description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="github-repo" content="jo-wilkin/GEOG0030" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Week 3 Practical Alternate: Using AGOL for Crime Mapping | Geocomputation 2020-2021 Work Book" />
+  
+  <meta name="twitter:description" content="GEOG0030: Geocomputation Work Book" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-2-practical-alternate-using-agol-for-population-mapping.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+<a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl-logo.jpg">
+</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>Module Overview</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#geocomputation-introductory-video"><i class="fa fa-check"></i>Geocomputation Introductory Video</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-in-touch-during-the-module"><i class="fa fa-check"></i>Getting in touch during the module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#noticed-a-mistake-in-this-resource"><i class="fa fa-check"></i>Noticed a mistake in this resource?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module Information</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning-for-geocomputation"><i class="fa fa-check"></i>Self-guided learning for Geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#geocomputation-timetable"><i class="fa fa-check"></i>Geocomputation Timetable</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#what-will-i-be-learning-each-week"><i class="fa fa-check"></i>What will I be learning each week?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading List</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#troubleshooting-module-content"><i class="fa fa-check"></i>Troubleshooting Module Content</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#additional-online-help-resources"><i class="fa fa-check"></i>Additional Online Help &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#feedback-weekly-and-end-of-module"><i class="fa fa-check"></i>Feedback: Weekly and End of Module</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Started</b></span></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html"><i class="fa fa-check"></i>What is this Workbook?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#using-this-workbook"><i class="fa fa-check"></i>Using this Workbook</a></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#workbook-functionality"><i class="fa fa-check"></i>Workbook Functionality</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html"><i class="fa fa-check"></i>Software Installation</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#qgis"><i class="fa fa-check"></i>QGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-and-r-studio"><i class="fa fa-check"></i>R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-1"><i class="fa fa-check"></i>R-Studio Setup 1</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-2"><i class="fa fa-check"></i>R-Studio Setup 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#arcgis"><i class="fa fa-check"></i>ArcGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#installation-issues"><i class="fa fa-check"></i>Installation Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html"><i class="fa fa-check"></i>External Usage</a><ul>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / Contributions</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#version"><i class="fa fa-check"></i>Version</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundational Concepts</b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#week-1-in-geocomp"><i class="fa fa-check"></i>Week 1 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#what-is-geocomputation"><i class="fa fa-check"></i>What is Geocomputation?</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#giscience-a-short-history"><i class="fa fa-check"></i>GIScience: A Short History</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#spatial-analysis-an-overview"><i class="fa fa-check"></i>Spatial Analysis: An Overview</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#programming-for-data-analysis"><i class="fa fa-check"></i>Programming for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#whats-next-for-us-in-geocomputation"><i class="fa fa-check"></i>What’s next for us in Geocomputation</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-ready-for-our-practicals"><i class="fa fa-check"></i>Getting Ready for our Practicals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a><ul>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#week-2-in-geocomp"><i class="fa fa-check"></i>Week 2 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#what-is-representation"><i class="fa fa-check"></i>What is Representation?</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#geographic-representation"><i class="fa fa-check"></i>Geographic Representation</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-structure-sampling-and-scale"><i class="fa fa-check"></i>Spatial Structure, Sampling and Scale</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-models"><i class="fa fa-check"></i>Spatial Data Models</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-file-formats"><i class="fa fa-check"></i>Spatial Data File Formats</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#gis-software---a-more-thorough-introduction-moved-to-week-5"><i class="fa fa-check"></i>GIS Software - a more thorough introduction (moved to Week 5)</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#practical-1-exploring-population-changes-across-london"><i class="fa fa-check"></i>Practical 1: Exploring Population Changes Across London</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a><ul>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#week-3-in-geocomp"><i class="fa fa-check"></i>Week 3 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#coordinate-systems-and-map-projections"><i class="fa fa-check"></i>Coordinate Systems and Map Projections</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#effective-data-visualisation"><i class="fa fa-check"></i>Effective Data Visualisation</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#the-modifiable-areal-unit-problem"><i class="fa fa-check"></i>The Modifiable Areal Unit Problem</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#practical-2-mapping-crime-across-london-wards-and-boroughs"><i class="fa fa-check"></i>Practical 2: Mapping Crime Across London Wards and Boroughs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html"><i class="fa fa-check"></i><b>4</b> Programming (for Data Analysis) using R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#week-4-in-geocomp"><i class="fa fa-check"></i>Week 4 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#an-introduction-to-programming"><i class="fa fa-check"></i>An Introduction to Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#using-r-and-r-studio-for-data-analysis"><i class="fa fa-check"></i>Using R and R-Studio for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#the-tidyverse-philosophy-and-principles"><i class="fa fa-check"></i>The Tidyverse Philosophy and Principles</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#practical-3-analysing-crime-in-2020-in-london"><i class="fa fa-check"></i>Practical 3: Analysing Crime in 2020 in London</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#week-5-in-geocomp"><i class="fa fa-check"></i>Week 5 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-for-data-science-research"><i class="fa fa-check"></i>Spatial Analysis for Data Science Research</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-software-and-programming"><i class="fa fa-check"></i>Spatial Analysis Software and Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-in-r-studio"><i class="fa fa-check"></i>Spatial Analysis in R-Studio</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#practical-4-analysing-crime-in-2020-in-london-from-a-spatial-perspective"><i class="fa fa-check"></i>Practical 4: Analysing Crime in 2020 in London from a spatial perspective</a></li>
+</ul></li>
+<li class="part"><span><b>II Core Spatial Analysis</b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-clusters.html"><a href="analysing-spatial-patterns-ii-clusters.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Clusters</a></li>
+<li class="chapter" data-level="8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>8</b> Rasters, Zonal Statistics and Interpolation</a></li>
+<li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
+<li class="chapter" data-level="9" data-path="geodemographics.html"><a href="geodemographics.html"><i class="fa fa-check"></i><b>9</b> Geodemographics</a></li>
+<li class="chapter" data-level="" data-path="optional-road-network-analysis.html"><a href="optional-road-network-analysis.html"><i class="fa fa-check"></i>OPTIONAL: Road Network Analysis</a></li>
+<li class="part"><span><b>IV Cartography &amp; Visualisation</b></span></li>
+<li class="chapter" data-level="10" data-path="cartography-and-visualisation-ii.html"><a href="cartography-and-visualisation-ii.html"><i class="fa fa-check"></i><b>10</b> Cartography and Visualisation II</a></li>
+<li class="part"><span><b>Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
+</ul></li>
+<li class="part"><span><b>Dissertation Help</b></span></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html"><i class="fa fa-check"></i>Extra resources for help with Quantitative Dissertations</a><ul>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#video-guidance-on-quantitative-dissertations"><i class="fa fa-check"></i>Video Guidance on Quantitative Dissertations</a></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#dataset-guidance"><i class="fa fa-check"></i>Dataset Guidance</a></li>
+</ul></li>
+<li class="part"><span><b>Alternate Tutorials</b></span></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i>A short introduction to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#sign-up-to-arcgis-online"><i class="fa fa-check"></i>Sign Up to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#practical-instructions-1"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation 2020-2021 Work Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<link href="style.css" rel="stylesheet">
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="../images/general/overview.png">
+</div>
+<div id="week-3-practical-alternate-using-agol-for-crime-mapping" class="section level1 unnumbered">
+<h1>Week 3 Practical Alternate: Using AGOL for Crime Mapping</h1>
+<p>For this week’s alternate practical, we will continue to use AGOL as our main GIS system to process and analyse our data, similar to the Q-GIS practical.</p>
+<p>This week, compared to last, we will however be dealing with two main ‘compromises’ in our use of AGOL vs. Q-GIS that you will need to be aware of:</p>
+<p><strong>1. Projections</strong></p>
+<p>Within Q-GIS, as you will see if you read through the main practical (which I highly advised doing), setting the Project and Data CRSs are an essential step in successfully analysing and visualisng spatial data correctly. In our case, our practical data uses two CRS - <strong>BNG for the administrative boundaries</strong> and <strong>WGS84 for the crime data</strong>. As a result, in the main practical, we use a tool within Q-GIS to reproject our crime data into <strong>the same CRS</strong> as the administrative boundaries, i.e. BNG.</p>
+<p>AGOL, in comparision, uses WGS84/Mercator as default CRS for all its data mapping and visualisation - and can only be altered if you change the basemap to a dataset that is in your desired CRS/PS (although in their Beta version, it appears that there will be more user choice over choosing projections). AGOL will convert our data, such as our Administrative Boundaries (which are in British National Grid) “on the fly” to WGS84 - so we do not need to reproject it. However, this will mean we may forgot this step in the future - for example, when using R-Studio instead; therefore it is important to recognise that this aspect of our GIS workflow is missed in this tutorial.</p>
+<p><strong>2. Map-Making &amp; Visualisation</strong></p>
+<p>AGOL also has relatively limited capacity for map-making. As a result, for this practical, I would recommend using a mixture of your output from AGOL alongside either a graphic software or even PowerPoint to make final additions that are needed to your map. You’ll see these recommendations below as my proposed workaround.</p>
+<p>Detailed cartography is one of the key advantages that Q-GIS and ArcGIS have over the use of programming tools, such as R-Studio. As you’ll see in future practicals, we can still make excellent maps in R-Studio, it just takes a little more time and experience than the “speed” of the traditional GIS software.</p>
+<p><strong>With all that being said, we still have plenty of data analysis to learn - so let’s get started!</strong></p>
+<div id="practical-instructions-1" class="section level3 unnumbered">
+<h3>Practical Instructions</h3>
+<p>We now have our datasets downloaded and ready to process - we simply need to get them loaded onto our AGO map.</p>
+<ol style="list-style-type: decimal">
+<li>Open your ArcGIS Online (AGO) home webpage and click on the <strong>Map</strong> tab.
+<ul>
+<li>Save your map as <strong>Crime Analysis in London</strong>.</li>
+<li>You can add as many tags as you like – I used: crime | London | analysis.</li>
+</ul></li>
+</ol>
+<p>Let’s go ahead and start adding data to our map.</p>
+<p><strong>Ward Population</strong></p>
+<p>We already have our <code>ward_population_2019.shp</code> dataset complete from last week, so we can go ahead and add this directly to the map.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Click on the <strong>Add</strong> button and select <strong>Add Layer from File</strong>:</li>
+</ol>
+<ul>
+<li>Add your `ward_population_2019.shp’ to the map using the <strong>Add -&gt; Add Layer From File</strong> tool.</li>
+<li>Remember, to add a <strong>shapefile</strong> to AGOL, you need to compress it first into a zip file.</li>
+</ul>
+<p><strong>Borough Population</strong></p>
+<p>We, as yet, do not have a <code>borough_population_2019.shp</code>.</p>
+<p>To create our Borough population shapefile, we need to repeat exactly the same process as last week in terms of joining our table data to our shapefile.</p>
+<p>We will let you complete this without full instructions as your first “GIS challenge”.</p>
+<p>Remember, you need to:</p>
+<ul>
+<li>Add the <code>London_Borough_Excluding_MHW.shp</code> file from the <code>2011</code> boundary data (in your <code>raw</code> data folder) to your map.
+<ul>
+<li>Remember, to add a <strong>shapefile</strong> to AGOL, you need to compress it first into a zip file.</li>
+</ul></li>
+<li>Add the <code>borough_population_2019.csv</code> you have just created from your <code>working</code> folder to your map.
+<ul>
+<li>This can just be added as a csv, but remember to add <strong>just as a table</strong>.</li>
+</ul></li>
+<li>Join the two datasets together using the <strong>Join Features</strong> tool within the <strong>Summarise Data</strong> option after clicking on the <strong>Perform Analysis</strong> button when hovering over the <code>London_Borough</code> dataset.</li>
+</ul>
+<p><strong>Crime Data</strong></p>
+<p>We now are ready to load and map our crime data.</p>
+<p>We will now add our <code>all_theft_2020.csv</code> from our <code>raw</code> folder - we will load this exactly like our previous population csv <strong>but</strong> this time, when presented with the option, we need to add the point coordinates to map our crime data as points.</p>
+<p>Before we can load our data, we actually need to do one final step of data cleaning (compared to the Q-GIS tutorial). Unfortunately AGOL cannot handle all of the data from 2020 - so we need to reduce the size of our dataset.</p>
+<p>For now, we will analyse theft crime for March in 2020.</p>
+<ol style="list-style-type: decimal">
+<li>Open your <code>all_theft_2020.csv</code> from our <code>raw</code> folder in your number editing software, and extract all rows that the field <code>Month</code> is equal to <code>2020-03</code>.
+<ul>
+<li>I do not mind how you do this, but just make sure to save to a new CSV called: <code>march_theft_2020.csv</code> into your <code>working</code> folder.</li>
+</ul></li>
+</ol>
+<p>Once you have extracted this smaller dataset:</p>
+<ol style="list-style-type: decimal">
+<li>Click on <strong>Add -&gt; Add Layer From File</strong>.
+<ul>
+<li>AGOL should automatically detect the <code>Longitude</code> and <code>Latitude</code> columns and map your data.</li>
+<li>You may have an error message, but you can ignore this for now.</li>
+</ul></li>
+</ol>
+<p>Unlike Q-GIS, we do not need to reproject our data when using AGOL as the software has done this for us - we can, as a result, move on to the next step - counting the number of crimes in each of our Wards and Boroughs respectively.</p>
+<div id="counting-points-in-polygons-with-agol" class="section level4 unnumbered">
+<h4>Counting Points-in-Polygons with AGOL</h4>
+<p>The next step of our analysis is incrediby simple - as AGOL has an in-built tool for us to use.</p>
+<p>We will use the <strong>Aggregate Points</strong> tool within the <strong>Summarise Data</strong> option after clicking on the <strong>Perform Analysis</strong> button when hovering over the <code>March_theft_2020</code> point dataset to count how many crimes have occured in both our <strong>Wards</strong> and our <strong>Boroughs</strong>.</p>
+<p>We will then have our count statistic which we will need to normalise by our population data to create our <strong>crime rate</strong> final statistic!</p>
+<p>Let’s get going and first start with calculating the crime rate for the borough scale:</p>
+<ol style="list-style-type: decimal">
+<li><p>Hover over the <code>March_theft_2020</code> point dataset and click the <strong>Perform Analysis</strong> button. Next, click on the <strong>Summarise Data</strong> option and then <strong>Aggregate Points</strong>.</p></li>
+<li>Set up your query as follows:
+<ul>
+<li><strong>Point Layer</strong>: <code>march_theft_2020</code></li>
+<li><strong>Aggregation areas</strong>: <code>borough_population</code></li>
+<li><strong>Add Statistics</strong>: Field = <code>UID</code> | Statistic = <code>Sum</code></li>
+<li><strong>Result Layer Name</strong>: <code>borough_march_theft</code></li>
+<li>No need to add anything to Option 4 (group by)</li>
+<li>Click <strong>Run Analysis</strong></li>
+</ul></li>
+</ol>
+<p>Note, the processing for the borough level will take around 5 minutes to process.</p>
+<p>Once complete, re-run the same process for the <strong>Ward</strong> scale - note this will take even longer to process (approximately 10 minutes).</p>
+</div>
+<div id="calculating-crime-rate-in-agol" class="section level4 unnumbered">
+<h4>Calculating Crime Rate in AGOL</h4>
+<p>Whilst it’s great that we’ve got our <code>crimecount</code>, as we know, what we actually need is a <strong>crime rate</strong> to account for the different sizes in population in the boroughs and to avoid a <strong>population heat map</strong>.</p>
+<p>We therefore now want to add a Crime Rate statistic to our dataset - we want to normalise our crime count by our population data.</p>
+<p><strong>Note, if your processing did not work OR is still processing after 10 minutes, you can find two pre-processed Ward and Borough shapefiles with population and crime count <a href="https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/EUTRNibqP81ChhkgWYPA1MkB9INtur5RODPjkOrtJ0KI3w?e=Pqad01">here</a>.</strong></p>
+<p>Let’s go ahead and calculate our <strong>Crime Rate</strong> statistic.</p>
+<p>To do this in AGOL, we actually need to access the <strong>Symbology</strong> menu.</p>
+<ol style="list-style-type: decimal">
+<li><p>Click on the <strong>Change Style</strong> / <strong>Symbology</strong> button whilst hovering over your <code>borough</code> dataset that now contains your crime count.</p></li>
+<li>In <strong>1: Choose Attribute</strong>, click on the drop-down next to the currently selected attribute, scroll to the bottom of the list and click on <strong>New Expression</strong>:
+<ul>
+<li>A new pop-up window should appear - this is where we’ll add a new expression to calculate our crime rate.</li>
+<li>Edit the Custom name to <code>crime_rate</code>.</li>
+<li>In the expression box, remove the current comments.</li>
+<li>Add the expression: <code>($feature.crimecount/$feature.POP2019)*10000</code></li>
+<li>You can double-click on the fields on the right of the box to add these if you want.</li>
+<li>Click on <strong>OK</strong>.</li>
+</ul></li>
+</ol>
+<p>You’ll now have a new field populated with the crime rate for each borough. Whilst you’re still in the <strong>Style</strong> tab, go ahead and change the styling to show the crime rate for each borough by creating a choropleth map:</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Click on <code>Counts and Amounts (Colour)</code> to access the correct style option.
+<ul>
+<li>You can click on the <code>Classify</code> check box to change the type of <strong>classification scheme</strong> and the <strong>number of classes</strong>.</li>
+<li>Once you’re happy with your styling, click through the <strong>OKs</strong> and <strong>Dones</strong> to return to the main AGO map.</li>
+</ul></li>
+</ol>
+<p>Now you just need to <strong>repeat the above steps for your Ward crime data</strong> and we’ll have our maps ready to export.</p>
+<p><strong>Remember to uncheck the box next to your borough layer, so this data does not show through on your ward map (and make sure you ward map has not shown through on your borough layer for that matter!).</strong></p>
+<p><em>As an FYI, we won’t export our data from AGOL as I’ll provide you with the final shapefiles in Week 5 for the practical that week. Just remember to save your map once you’ve exported your maps as instructed below.</em></p>
+</div>
+<div id="making-our-crime-rate-maps-for-analysis-in-agol" class="section level4 unnumbered">
+<h4>Making our Crime Rate Maps for analysis in AGOL</h4>
+<p>As stated at the top of this practical, AGOL does not have a huge amount of flexibility when it comes to cartography - so we’ll need to get a bit inventive.</p>
+<p>To create maps to submit for your assignment, these are the steps I recommend:</p>
+<ol style="list-style-type: decimal">
+<li>Click on <strong>Print -&gt; Map with Legend</strong> and either take a screenshot or use the <strong>File</strong> -&gt; <strong>Export as PDF</strong>.
+<ul>
+<li>Remember to save your final map outputs in your <code>maps</code> folder.</li>
+<li>You may want to create a folder for these maps titled <code>w3</code>.</li>
+</ul></li>
+</ol>
+<p>To add the various map components, open up <strong>PowerPoint</strong> - preferably find a slide size that is wider than it is taller.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Insert your two maps onto your slide, placing them side by side.</li>
+</ol>
+<p>Now we have our two maps ready, we can add our <strong>main map elements</strong>:</p>
+<ul>
+<li><strong>Title</strong></li>
+<li><strong>Orientation</strong></li>
+<li><strong>Data Source</strong></li>
+</ul>
+<p>We will use PowerPoints text box and shape features to replicate this on our slide.</p>
+<p>We won’t at this time add anything else - an inset map could be nice, but this requires additional data that we do not have at the moment.</p>
+<p>Any other map elements would also probably make our design look too busy.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Using the tools on PowerPoint:
+<ul>
+<li>Add a <strong>north arrow</strong>: choose an arrow from PPTs shapes and draw it pointing upwards (i.e. north on your map)</li>
+<li>Add a <strong>title</strong> at the top of the page, and <strong>subtitles</strong> above the individual maps.</li>
+<li>Finally add a box detailing Data Sources, you can copy and paste the text below:
+<br>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence).</li>
+<li>Feel free to customise your font etc. to give the final maps a good aesthetic.</li>
+</ul></li>
+</ol>
+<p>Once you have added these properties in, you should have something that looks a little like this:</p>
+<p><img src="images/w3/ago_map.png" width="640" style="display: block; margin: auto;" /></p>
+<p>You’ll notice I got a bit creative with cropping my maps in various ways to try to create a similar format to the one I made in the Q-GIS tutorial. The only thing I haven’t managed to add is a <strong>scale bar</strong> as this would require accuracy in digitising that we do not have in PPT.</p>
+<p>This is <strong>as close</strong> as we can get with creating maps using AGO - it would be great if we could edit it further but this is the constraint with using an online tool.</p>
+<p><strong>Export map</strong></p>
+<p>Now we have our maps put together, we are finally ready to export our map!</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Export your slide as a <strong>PNG</strong>.
+<ul>
+<li>Remember to also save your original slide.</li>
+</ul></li>
+</ol>
+<div class="assignment">
+<p><strong>Assignment 1: Submit your final maps and a brief write-up</strong><br>
+Your one and only assignment for this week is to submit your maps your relevant seminar folder <a href="https://liveuclac-my.sharepoint.com/:f:/g/personal/ucfailk_ucl_ac_uk/EqyMU5-efwVLoJFp3M2yUvcBhh3B69eIDLb-MgOl01FHZg?e=kqyGd0">here</a>.</p>
+<p>What I’d like you to do is, on your own computer, create a new Word document and set the orientation to <strong>Landscape</strong>.</p>
+<p>Copy over your map into the first page and ensure it takes up the whole page.</p>
+<p>On a second page, write a short answer (less than 100 words) to our original question set at the start of our practical:</p>
+<blockquote>
+<p><em>Does our perception of crime (and its distribution) in London vary at different scales?</em></p>
+</blockquote>
+<p>Export this to a PDF and upload to your relevant seminar folder.
+(Again, no need for names - but you might need to come up with a random code on your PDF name, just in case someone else has the same file name as you!)</p>
+</div>
+<p><br>
+And that’s it for this week’s practical!</p>
+<p>This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in AGOL. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.</p>
+<p>If you feel you didn’t quite understand everything this week, do not worry too much - Week 5 will serve as a good revision of everything we’ve covered here!</p>
+<hr />
+</div>
+<div id="extension-activity-mapping-crime-rates-using-averages-1" class="section level4 unnumbered">
+<h4>Extension Activity: Mapping Crime Rates using Averages</h4>
+<p>If you have managed to get through all of this in record time and are still looking for some more work to do - one question I would ask you is: <strong>could we visualise our crime rate data in a better way?</strong></p>
+<p>At the moment, we are looking at the crime rate as an amount, therefore we use a sequential colour scheme that shows, predominantly, where the crime rate is the highest.</p>
+<p>Could we use a different approach - using a diverging colour scheme - that could show us where the crime rate is lower and/or higher than a critical mid-point, such as the average crime rate across the wards or borough?</p>
+<p>I think so! But first, you’ll need to calculate these averages and then our individual ward/boroughs (%?) difference from this mean.</p>
+<p><em>In AGOL, you may find an option that does this for us. If not, you can use the New Expression builder to calculate these values.</em></p>
+<p>See if you can think how to calculate this - and then create your diverging maps.</p>
+<p>You can either just export an image of your results (in the main Q-GIS window) or you are welcome to update your current maps to reflect this new approach.</p>
+<hr />
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Explain what a Geographic Reference System and a Projected Coordinate System is and their differences.</li>
+<li>Understand the limitations of different PCSs and recognise when to use each for specific anlaysis.</li>
+<li>Know what to include - and what not to include - on a map.</li>
+<li>Know how to represent different types of spatial data on a map.</li>
+<li>Explain what the Modifiable Areal Unit Problem is and why poses issues for spatial analysis.</li>
+<li>Reproject data in Q-GIS.</li>
+<li>Map event data using a ‘best-practice’ approach.</li>
+<li>Produce a map of publishable quality.</li>
+</ul>
+</div>
+</div>
+<div id="acknowledgements-9" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>Acknowledgements are made in appropriate sections, but overall this week, as evident, has utilised the Q-GIS documentation extensively.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-2-practical-alternate-using-agol-for-population-mapping.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jo-wilkin/GEOG0030/edit/master/03-week03b.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/jo-wilkin/GEOG0030/raw/master/03-week03b.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

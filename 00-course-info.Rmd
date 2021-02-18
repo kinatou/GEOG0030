@@ -55,13 +55,13 @@ The topics covered over the next ten weeks are:
 | 4             | 01/02/2021    | Foundational Concepts | Programming (for Statistical Analysis) | Seminar |
 | 5             | 08/02/2021    | Foundational Concepts | Programming for Spatial Analysis & ESDA | Help/Study Groups |
 | **READING WEEK** | **READING WEEK**  | **READING WEEK CODING CHALLENGE** | - | - |
-| 6             | 16/11/2021    | Core Spatial Analysis | Analysing Spatial Patterns I: Spatial Auto-Correlation & Regression | Seminar |
-| 7             | 23/11/2021    | Core Spatial Analysis | Analysing Spatial Patterns II: Clusters | Help/Study Groups |
-| 8             | 30/11/2021    | Core Spatial Analysis | Rasters, Zonal Statistics and Interpolation | Seminar |
-| 9             | 07/12/2021    | Advanced Spatial Analysis | Geodemographics | Help/Study Groups |
-| 10            | 14/12/2021    | Cartography & Visualisation | Cartography and Visualisation II | Seminar |
+| 6             | 22/02/2021    | Core Spatial Analysis | Analysing Spatial Patterns I: Spatial Auto-Correlation & Regression | Seminar |
+| 7             | 01/03/2021    | Core Spatial Analysis | Analysing Spatial Patterns II: Clusters | Help/Study Groups |
+| 8             | 08/03/2021    | Core Spatial Analysis | Rasters, Zonal Statistics and Interpolation | Seminar |
+| 9             | 15/03/2021    | Advanced Spatial Analysis | Geodemographics | Help/Study Groups |
+| 10            | 22/03/2021    | Cartography & Visualisation | Cartography and Visualisation II | Seminar |
 
-The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading (see the Reading List below), particularly to help with your second assessment. 
+The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading (see the [Reading List] below), particularly to help with your second assessment. 
 
 In addition to our course, there are many other online resources and tutorials that can help expand on the topics and content we cover - whilst it is not necessary for your assessments, you are encouraged to go beyond our recommendations and fully engage with applied GIS research, methods and visualisation techniques. 
 
@@ -69,7 +69,7 @@ Following certain 'movers and shakers' in the GIScience / Spatial Data Science w
 
 ## Reading List {-}
 
-We link to books and resources throughout each practical. The [full reading list for the course](LINK) is provided on the UCL library reading list page for the course. Alternatively, you can always easily find the link to the Reading List in the top right of any Moodle page for our module, under "Library Resources". 
+We link to books and resources throughout each practical. The [full reading list for the course](http://readinglists.ucl.ac.uk/modules/geog0030) is provided on the UCL library reading list page for the course. Alternatively, you can always easily find the link to the Reading List in the top right of any Moodle page for our module, under "Library Resources". 
 
 This Reading List will be updated on a weekly basis, in preparation for the week to come, so you may see some weeks without reading for now. But please check back at the **start of each week** as the lecture, seminar and/or workshop material is released for that week to check for new readings. All reading for that week will be provided by the time your learning materials are released - so you will not need to check the reading list for updates as the week progresses.
 
